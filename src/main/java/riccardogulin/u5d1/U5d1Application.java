@@ -1,5 +1,6 @@
 package riccardogulin.u5d1;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -8,12 +9,14 @@ import riccardogulin.u5d1.entities.FrontendStudent;
 import riccardogulin.u5d1.entities.Interviewer;
 
 @SpringBootApplication
+@Slf4j // <-- Serve per usare LogBack qua dentro
 public class U5d1Application {
 
 	public static void main(String[] args) {
 
 		SpringApplication.run(U5d1Application.class, args);
 
+		log.info("QUESTO E' UN LOG DI LOGBACK");
 	/*	// ************************************ METODO TRADIZIONALE (Senza Beans) ******************************************
 		BackendStudent b = new BackendStudent("Aldo");
 		FrontendStudent f = new FrontendStudent("Giovanni");
