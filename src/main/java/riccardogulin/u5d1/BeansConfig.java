@@ -2,7 +2,9 @@ package riccardogulin.u5d1;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import riccardogulin.u5d1.entities.FrontendStudent;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Scope;
+import riccardogulin.u5d1.entities.*;
 
 @Configuration // Annotazione OBBLIGATORIA, altrimenti questa classe non verrà presa in considerazione
 public class BeansConfig {
@@ -26,5 +28,25 @@ public class BeansConfig {
 	@Bean
 	public FrontendStudent getFrontendStudent() {
 		return new FrontendStudent("Aldo");
+	}
+
+	@Bean
+	@Scope("prototype") // Annotazione opzionale per quando non voglio che lo scope sia SINGLETON
+	// SINGLETON = c'è un'UNICA copia dell'oggetto condivisa in tutta l'applicazione
+	// PROTOTYPE = ogni volta che uso .getBean mi verrà tornato un nuovo oggetto slegato dal precedente
+	@Primary // Annotazione che mi consente di risolvere le ambiguità, ci consente di stabilire
+	// che questo sarà il bean da scegliere in caso di ambiguità. Una sorta di default.
+	public BackendStudent getBackendStudent(String name) {
+		return new BackendStudent(name);
+	}
+
+	@Bean
+	public FullstackStudent getFullstackStudent() {
+		return new FullstackStudent("Giacomo");
+	}
+
+	@Bean(name = "interviewer") // Posso anche assegnare un nome ai miei Bean, se non lo faccio verrà usato il nome del metodo
+	public Interviewer getInterviewer(IStudent student) {
+		return new Interviewer(student);
 	}
 }

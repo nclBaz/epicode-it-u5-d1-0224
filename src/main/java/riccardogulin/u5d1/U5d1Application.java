@@ -3,7 +3,9 @@ package riccardogulin.u5d1;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import riccardogulin.u5d1.entities.BackendStudent;
 import riccardogulin.u5d1.entities.FrontendStudent;
+import riccardogulin.u5d1.entities.Interviewer;
 
 @SpringBootApplication
 public class U5d1Application {
@@ -42,6 +44,17 @@ public class U5d1Application {
 		FrontendStudent f1 = (FrontendStudent) context.getBean("getFrontendStudent");
 		System.out.println(f);
 		System.out.println(f1);
+
+		Interviewer i = context.getBean(Interviewer.class);
+		i.asksQuestion();
+
+		// ************************************ SINGLETON VS PROTOTYPE **************************************
+		BackendStudent backendStudent = context.getBean(BackendStudent.class);
+		System.out.println(backendStudent);
+		BackendStudent backendStudent1 = context.getBean(BackendStudent.class);
+		backendStudent1.setName("Claudio");
+		System.out.println(backendStudent1);
+		System.out.println(backendStudent);
 
 		context.close(); // Alla fine delle operazioni è buona norma chiudere il context
 	}

@@ -1,7 +1,6 @@
 package riccardogulin.u5d1.entities;
 
 public class BackendStudent implements IStudent {
-
 	private String name;
 
 	public BackendStudent(String name) {
@@ -18,6 +17,10 @@ public class BackendStudent implements IStudent {
 	@Override
 	public String getName() {
 		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override
